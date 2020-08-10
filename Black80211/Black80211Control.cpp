@@ -71,6 +71,12 @@ IOService* Black80211Control::probe(IOService *provider, SInt32 *score) {
     return this;
 }
 
+#ifdef BIG_SUR
+mbuf_t Black80211Control::allocatePacket(UInt32 size) {
+	return IONetworkController::allocatePacket(size);	
+}
+#endif
+
 IONetworkInterface *Black80211Control::createInterface() {
 	auto *interface = new Black80211Interface;
 	if (interface == NULL)
@@ -100,18 +106,6 @@ IOWorkLoop* Black80211Control::getWorkLoop() const {
 }
 
 bool Black80211Control::start(IOService* provider) {
-	OSDictionary *matchingDict = provider->serviceMatching("AppleSMC");
-	if (!matchingDict)
-		return false;
-	
-	IOService *smc = provider->waitForMatchingService(matchingDict);
-	OSSafeReleaseNULL(matchingDict);
-
-	if (!smc)
-		return false; // too early
-	
-	OSSafeReleaseNULL(smc);	
-	
     IOLog("Black80211: Start\n");
 	fProvider->setController(this);
 	

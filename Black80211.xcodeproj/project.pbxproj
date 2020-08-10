@@ -212,6 +212,7 @@
 		6863648B23E36CDF00549C37 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -222,6 +223,7 @@
 					"__PRIVATE_SPI__=1",
 					"$(inherited)",
 					"CATALINA=1",
+					BIG_SUR,
 				);
 				INFOPLIST_FILE = Black80211/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -239,6 +241,7 @@
 		6863648C23E36CDF00549C37 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -247,6 +250,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"__PRIVATE_SPI__=1",
 					"CATALINA=1",
+					BIG_SUR,
 				);
 				INFOPLIST_FILE = Black80211/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;

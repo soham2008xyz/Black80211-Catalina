@@ -184,7 +184,11 @@ public:
     virtual UInt32 selfDiagnosticsReport(int,char const*,uint);
     
     virtual UInt32 getDataQueueDepth(OSObject *);
-    
+	
+#ifdef BIG_SUR
+	virtual bool isAssociatedToMovingNetwork(void) { return false; }
+#endif
+	
     virtual mbuf_flags_t inputPacket(mbuf_t);
     
     virtual SInt32 apple80211_ioctl_get(IO80211Interface *,IO80211VirtualInterface *,ifnet_t,void *);
@@ -197,7 +201,10 @@ public:
     
     virtual bool attachInterface(IOSkywalkInterface *,IOService *);
     
-    
+#ifdef BIG_SUR 
+	virtual bool detachInterface(IOSkywalkInterface *, bool);
+#endif
+	
 	virtual IO80211VirtualInterface* createVirtualInterface(ether_addr *,uint);
     virtual bool attachVirtualInterface(IO80211VirtualInterface **,ether_addr *,uint,bool);
     virtual bool detachVirtualInterface(IO80211VirtualInterface *,bool);
@@ -212,7 +219,9 @@ public:
     virtual bool attachInterface(IONetworkInterface **, bool attach = true) APPLE_KEXT_OVERRIDE;
     virtual void stop(IOService *) override;
     virtual void free() override;
+#ifdef BIG_SUR
     virtual bool terminate(unsigned int) APPLE_KEXT_OVERRIDE;
+#endif
     virtual bool init(OSDictionary *) override;
     virtual IOService* getProvider(void) const APPLE_KEXT_OVERRIDE;
 /*

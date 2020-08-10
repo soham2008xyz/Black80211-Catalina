@@ -175,6 +175,10 @@ private:
     
     bool addMediumType(UInt32 type, UInt32 speed, UInt32 code, char* name = 0);
 	static void postScanningDoneMessage(OSObject* self, ...);
+#ifdef BIG_SUR
+    virtual mbuf_t allocatePacket(UInt32 size) override;
+#endif
+	
 public:
 	ScanResult* scan_result;
     
